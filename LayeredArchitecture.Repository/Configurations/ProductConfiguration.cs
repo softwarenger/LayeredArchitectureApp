@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LayeredArchitecture.Repository.Configurations
 {
-    class ProductConfiguration : IEntityTypeConfiguration<Product>
+    internal class ProductConfiguration : IEntityTypeConfiguration<Product>
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {

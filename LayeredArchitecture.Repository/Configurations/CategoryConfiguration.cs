@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LayeredArchitecture.Repository.Configurations
 {
-    class CategoryConfiguration : IEntityTypeConfiguration<Category>
+    internal class CategoryConfiguration : IEntityTypeConfiguration<Category>
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
