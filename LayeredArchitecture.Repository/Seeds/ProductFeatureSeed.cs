@@ -15,13 +15,13 @@ namespace LayeredArchitecture.Repository.Seeds
         {
             builder.HasData(
                 new ProductFeature { Id = 1, Color = "Red", Height = 200, Width = 300, ProductId = 1 },
-                new ProductFeature { Id = 1, Color = "Blue", Height = 350, Width = 300, ProductId = 2 },
-                new ProductFeature { Id = 1, Color = "Green", Height = 240, Width = 300, ProductId = 3 },
-                new ProductFeature { Id = 1, Color = "Black", Height = 320, Width = 300, ProductId = 4 },
-                new ProductFeature { Id = 1, Color = "White", Height = 210, Width = 300, ProductId = 6 },
-                new ProductFeature { Id = 1, Color = "Yellow", Height = 740, Width = 300, ProductId = 7 },
-                new ProductFeature { Id = 1, Color = "Red", Height = 480, Width = 300, ProductId = 8 },
-                new ProductFeature { Id = 1, Color = "White", Height = 200, Width = 300, ProductId = 9 }
+                new ProductFeature { Id = 2, Color = "Blue", Height = 350, Width = 300, ProductId = 2 },
+                new ProductFeature { Id = 3, Color = "Green", Height = 240, Width = 300, ProductId = 3 },
+                new ProductFeature { Id = 4, Color = "Black", Height = 320, Width = 300, ProductId = 4 },
+                new ProductFeature { Id = 5, Color = "White", Height = 210, Width = 300, ProductId = 6 },
+                new ProductFeature { Id = 6, Color = "Yellow", Height = 740, Width = 300, ProductId = 7 },
+                new ProductFeature { Id = 7, Color = "Red", Height = 480, Width = 300, ProductId = 8 },
+                new ProductFeature { Id = 8, Color = "White", Height = 200, Width = 300, ProductId = 9 }
                 );
         }
     }
