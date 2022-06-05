@@ -1,5 +1,8 @@
+using LayeredArchitecture.Core.Repositories;
+using LayeredArchitecture.Core.Services;
 using LayeredArchitecture.Core.UnitOfWorks;
 using LayeredArchitecture.Repository;
+using LayeredArchitecture.Repository.Repositories;
 using LayeredArchitecture.Repository.UnitOfWork;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,6 +29,8 @@ namespace LayerArchitecture.API
         {
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            //services.AddScoped(typeof(IService<>),typeof(Service<>));
 
             services.AddDbContext<AppDbContext>(options =>
                  options.UseSqlServer(Configuration.GetConnectionString("SqlConnection"), options =>
