@@ -4,6 +4,8 @@ using LayeredArchitecture.Core.UnitOfWorks;
 using LayeredArchitecture.Repository;
 using LayeredArchitecture.Repository.Repositories;
 using LayeredArchitecture.Repository.UnitOfWork;
+using LayeredArchitecture.Service.AutoMappers;
+using LayeredArchitecture.Service.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -30,7 +32,9 @@ namespace LayerArchitecture.API
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-            //services.AddScoped(typeof(IService<>),typeof(Service<>));
+            services.AddScoped(typeof(IService<>), typeof(Service<>));
+            services.AddAutoMapper(typeof(MapProfile));
+
 
             services.AddDbContext<AppDbContext>(options =>
                  options.UseSqlServer(Configuration.GetConnectionString("SqlConnection"), options =>
