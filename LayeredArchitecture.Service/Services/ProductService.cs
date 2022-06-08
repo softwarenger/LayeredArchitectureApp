@@ -4,10 +4,7 @@ using LayeredArchitecture.Core.Dtos;
 using LayeredArchitecture.Core.Repositories;
 using LayeredArchitecture.Core.Services;
 using LayeredArchitecture.Core.UnitOfWorks;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace LayeredArchitecture.Service.Services
@@ -25,7 +22,9 @@ namespace LayeredArchitecture.Service.Services
         public async Task<CustomResponseDto<List<ProductsWithCategoryDto>>> GetProductsWithCategory()
         {
             var products = await _productRepository.GetProductsWithCategory();
-            return CustomResponseDto<List<ProductsWithCategoryDto>>.Success(204);
+            var productsDto = _mapper.Map<List<ProductsWithCategoryDto>>(products);
+            return CustomResponseDto<List<ProductsWithCategoryDto>>.Success(200, productsDto);
+
         }
     }
 }
