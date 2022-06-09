@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace LayeredArchitecture.Core.Dtos
 {
-    public class ProductsWithCategoryDto : ProductDto
+    public class CategoryWithProductsDto : CategoryDto
     {
-        public CategoryDto Category { get; set; }
+        public List<ProductDto> Products { get; set; }
     }
 }
