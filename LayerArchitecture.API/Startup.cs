@@ -1,4 +1,5 @@
 using FluentValidation.AspNetCore;
+using LayeredArchitecture.API.Filters;
 using LayeredArchitecture.Core.Repositories;
 using LayeredArchitecture.Core.Services;
 using LayeredArchitecture.Core.UnitOfWorks;
@@ -10,6 +11,7 @@ using LayeredArchitecture.Service.Services;
 using LayeredArchitecture.Service.Validations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -50,7 +52,13 @@ namespace LayerArchitecture.API
                   options.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name)
                 ));
 
-            services.AddControllers().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductDtoValidator>());
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
+            });
+
+            services.AddControllers(options => options.Filters.Add(new ValidateFilterAttribute()))
+                .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductDtoValidator>());
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "LayerArchitecture.API", Version = "v1" });
