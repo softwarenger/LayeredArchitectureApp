@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using LayeredArchitecture.Core.Repositories;
 using LayeredArchitecture.Core.Services;
 using LayeredArchitecture.Core.UnitOfWorks;
@@ -6,6 +7,7 @@ using LayeredArchitecture.Repository.Repositories;
 using LayeredArchitecture.Repository.UnitOfWork;
 using LayeredArchitecture.Service.AutoMappers;
 using LayeredArchitecture.Service.Services;
+using LayeredArchitecture.Service.Validations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -48,7 +50,7 @@ namespace LayerArchitecture.API
                   options.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name)
                 ));
 
-            services.AddControllers();
+            services.AddControllers().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductDtoValidator>());
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "LayerArchitecture.API", Version = "v1" });
