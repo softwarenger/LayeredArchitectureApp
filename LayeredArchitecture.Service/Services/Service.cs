@@ -1,6 +1,7 @@
 ﻿using LayeredArchitecture.Core.Repositories;
 using LayeredArchitecture.Core.Services;
 using LayeredArchitecture.Core.UnitOfWorks;
+using LayeredArchitecture.Service.Exceptions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -50,7 +51,13 @@ namespace LayeredArchitecture.Service.Services
 
         public async Task<T> GetByIdAsync(int Id)
         {
-            return await _genericRepository.GetByIdAsync(Id);
+            var hasProduct = await _genericRepository.GetByIdAsync(Id);
+
+            if (hasProduct == null)
+            {
+                throw new NotFoundException($"{typeof(T).Name}({Id}) not found!");
+            }
+            return hasProduct;
         }
 
         public async Task RemoveAsync(T entity)

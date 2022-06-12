@@ -4,6 +4,7 @@ using LayeredArchitecture.Core.Dtos;
 using LayeredArchitecture.Core.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NLayer.API.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,7 @@ namespace LayeredArchitecture.API.Controllers
 
 
         }
+        
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
